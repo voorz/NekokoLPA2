@@ -33,6 +33,7 @@ class ProfilesHeader extends StatefulWidget {
   final VoidCallback? onDownload;
   final Function(GlobalKey)? onBatchDownload;
   final VoidCallback? onNotifications;
+  final VoidCallback? onVoWiFi;
   final List<Widget> extraActions;
   final VoidCallback onRefreshNotifications;
   final String? currentMode;
@@ -66,6 +67,7 @@ class ProfilesHeader extends StatefulWidget {
     required this.onDownload,
     required this.onBatchDownload,
     required this.onNotifications,
+    this.onVoWiFi,
     this.extraActions = const <Widget>[],
     required this.onRefreshNotifications,
     this.currentMode,
@@ -238,6 +240,15 @@ class _ProfilesHeaderState extends State<ProfilesHeader> {
               },
             ),
           SizedBox(width: gap),
+          if (widget.onVoWiFi != null)
+            ActionButton(
+              icon: Icons.wifi_calling_outlined,
+              onPressed: (widget.selectedReader != null && !widget.isLocked)
+                  ? widget.onVoWiFi
+                  : null,
+              label: 'VoWiFi',
+            ),
+          if (widget.onVoWiFi != null) SizedBox(width: gap),
           ..._interleave(widget.extraActions, SizedBox(width: gap)),
           if (widget.extraActions.isNotEmpty) SizedBox(width: gap),
           if (widget.onDownload != null)

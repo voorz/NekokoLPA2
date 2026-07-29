@@ -55,7 +55,9 @@ import 'package:logging/logging.dart';
 import 'download_profile_page.dart';
 import 'batch_download_page.dart';
 import 'aram_info_page.dart';
+import 'vowifi_management_page.dart';
 import '../widgets/common/adaptive_context_menu.dart';
+import '../widgets/common/capsule_tab.dart';
 import '../widgets/common/loading_spinner.dart';
 import '../widgets/profiles_screen/profile_loading_overlay.dart';
 import '../services/update_service.dart';
@@ -211,6 +213,9 @@ class _ProfilesScreenState extends State<ProfilesScreen>
   // Search
   String _searchQuery = "";
   List<EuiccProfile>? _filteredProfiles;
+
+  // VoWiFi capsule tab: 0 = 管理 (Manage), 1 = VoWiFi
+  int _mainTabIndex = 0;
 
   String? _togglingIccid;
   String? _deletingIccid;
@@ -4417,6 +4422,16 @@ class _ProfilesScreenState extends State<ProfilesScreen>
                       ],
                     ),
                   ),
+                  title: isExtremelySmall
+                      ? null
+                      : CapsuleTab<int>(
+                          items: const [
+                            CapsuleTabItem(value: 0, label: '管理'),
+                            CapsuleTabItem(value: 1, label: 'VoWiFi'),
+                          ],
+                          selectedValue: _mainTabIndex,
+                          onChanged: (v) => setState(() => _mainTabIndex = v),
+                        ),
                   backgroundColor: Colors.transparent,
                   surfaceTintColor: Colors.transparent,
                   elevation: 0,
@@ -4484,6 +4499,9 @@ class _ProfilesScreenState extends State<ProfilesScreen>
                             }
                           }
                         : null,
+                    onVoWiFi: _eid != null
+                        ? () => setState(() => _mainTabIndex = 1)
+                        : null,
                     extraActions: _selectedReader == null
                         ? []
                         : _readerActionsCache.putIfAbsent(
@@ -4495,6 +4513,59 @@ class _ProfilesScreenState extends State<ProfilesScreen>
                           ),
                     onRefreshNotifications: _loadPendingNotificationCount,
                   ),
+
+                  // VoWiFi management page (when VoWiFi tab is selected)
+                  if (_mainTabIndex == 1 && _selectedReader != null)
+                    Expanded(
+                      child: VoWiFiManagementPage(
+                        activeNumber: _eid,
+                        simInfo: SimDeviceInfo(
+                          imei: '866069053265813',
+                          iccid: _eid ?? '89441000400130861950',
+                          imsi: '234159610696049',
+                          phoneNumber: '+447385201189',
+                          operatorName: 'Vodafone (23415)',
+                          operatorFlagUrl:
+                              'https://flagcdn.com/w40/gb.png',
+                          firmwareVersion: 'QDC507GLEFM21',
+                          airplaneMode: true,
+                          runningMode: '读卡器',
+                        ),
+                        status: VoWiFiStatus.ready(),
+                        conversation: SmsConversation(
+                          contact: '+44 75452654878',
+                          messages: [
+                            SmsMessage(
+                              body: 'Your verification code is 829461. Valid for 5 minutes.',
+                              isSent: false,
+                              timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
+                            ),
+                            SmsMessage(
+                              body: 'WiFi Calling is now active on this number.',
+                              isSent: false,
+                              timestamp: DateTime.now().subtract(const Duration(minutes: 2)),
+                            ),
+                          ],
+                        ),
+                        onCall: (number) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Calling $number… (demo)'),
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        },
+                        onSmsSend: (text) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('SMS sent: $text (demo)'),
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  else ...[
 
                   // Search and Sort Row
                   if (_profiles != null &&
@@ -4627,6 +4698,7 @@ class _ProfilesScreenState extends State<ProfilesScreen>
                         ),
                       ),
                     ),
+                  ], // close else ...[
                 ],
               ),
               floatingActionButton:
