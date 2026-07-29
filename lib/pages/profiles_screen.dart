@@ -4432,6 +4432,7 @@ class _ProfilesScreenState extends State<ProfilesScreen>
                           selectedValue: _mainTabIndex,
                           onChanged: (v) => setState(() => _mainTabIndex = v),
                         ),
+                  centerTitle: true,
                   backgroundColor: Colors.transparent,
                   surfaceTintColor: Colors.transparent,
                   elevation: 0,

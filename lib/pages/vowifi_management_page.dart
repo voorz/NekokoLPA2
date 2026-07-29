@@ -64,32 +64,37 @@ class VoWiFiManagementPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                // Top: SIM info + Status side by side
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(child: SimInfoPanel(info: simInfo)),
-                    const SizedBox(width: 16),
-                    Expanded(child: VoWiFiStatusPanel(status: status)),
-                  ],
+                // Top: SIM info + Status side by side (equal height)
+                IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(child: SimInfoPanel(info: simInfo)),
+                      const SizedBox(width: 16),
+                      Expanded(child: VoWiFiStatusPanel(status: status)),
+                    ],
+                  ),
                 ),
-                // Bottom: SMS + Dialer side by side
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: VoWiFiSmsPanel(
-                        conversation: conversation,
-                        onSend: onSmsSend,
+                const SizedBox(height: 12),
+                // Bottom: SMS + Dialer side by side (equal height)
+                IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: VoWiFiSmsPanel(
+                          conversation: conversation,
+                          onSend: onSmsSend,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      flex: 1,
-                      child: VoWiFiDialerPanel(onCall: onCall),
-                    ),
-                  ],
+                      const SizedBox(width: 16),
+                      Expanded(
+                        flex: 1,
+                        child: VoWiFiDialerPanel(onCall: onCall),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
