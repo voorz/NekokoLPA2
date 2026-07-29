@@ -38,7 +38,7 @@ class SimInfoPanel extends StatelessWidget {
                         width: 18,
                         height: 12,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) =>
+                        errorBuilder: (_, _, _) =>
                             const SizedBox(width: 18, height: 12),
                       ),
                     ),

@@ -129,7 +129,6 @@ class _StatusBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final overall = status.overall;
     final color = overall.color;
     final bgColor = color.withValues(alpha: 0.1);
