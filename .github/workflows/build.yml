@@ -2,9 +2,8 @@ name: Build NekokoLPA2
 
 on:
   push:
-    branches: [release]
-  pull_request:
-    branches: [release]
+    tags:
+      - 'v*'
   workflow_dispatch:
     inputs:
       android_tools_only:
@@ -274,7 +273,7 @@ jobs:
     if: >-
       always() && !cancelled() &&
       github.event_name != 'pull_request' &&
-      (github.ref == 'refs/heads/release' || inputs.android_tools_only) &&
+      (startsWith(github.ref, 'refs/tags/') || inputs.android_tools_only) &&
       needs.meta.result == 'success' && needs.android.result == 'success' &&
       needs.otbridge.result == 'success' &&
       (inputs.android_tools_only ||

@@ -148,7 +148,6 @@ class _BatchDownloadPageState extends State<BatchDownloadPage> {
         }
         newItems.add(item);
       }
-      if (newItems.length >= 20) break;
     }
 
     if (mounted) {
