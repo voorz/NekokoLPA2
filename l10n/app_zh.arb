@@ -677,7 +677,7 @@
   "deleteNotification": "删除通知",
   "noNotifications": "无通知",
   "batchDownloadTitle": "批量下载",
-  "batchDownloadHint": "在此粘贴多个 LPA 代码（每行一个，最多 20 个）",
+  "batchDownloadHint": "在此粘贴多个 LPA 代码（每行一个）",
   "foundLpaCodes": "找到 {count} 个 LPA 代码",
   "@foundLpaCodes": {
     "placeholders": {

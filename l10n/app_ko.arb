@@ -677,7 +677,7 @@
   "deleteNotification": "알림 삭제",
   "noNotifications": "알림 없음",
   "batchDownloadTitle": "일괄 다운로드",
-  "batchDownloadHint": "여러 LPA 코드를 여기에 붙여넣으세요 (한 줄에 1개씩, 최대 20개)",
+  "batchDownloadHint": "여러 LPA 코드를 여기에 붙여넣으세요 (한 줄에 1개씩)",
   "foundLpaCodes": "{count}개의 LPA 코드를 찾았습니다",
   "@foundLpaCodes": {
     "placeholders": {

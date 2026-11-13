@@ -677,7 +677,7 @@
   "deleteNotification": "通知を削除",
   "noNotifications": "通知はありません",
   "batchDownloadTitle": "一括ダウンロード",
-  "batchDownloadHint": "複数の LPA コードをここに貼り付け (1 行につき 1 個、最大 20 個)",
+  "batchDownloadHint": "複数の LPA コードをここに貼り付け (1 行につき 1 個)",
   "foundLpaCodes": "{count} 個の LPA コードが見つかりました",
   "@foundLpaCodes": {
     "placeholders": {

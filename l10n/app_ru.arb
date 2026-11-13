@@ -677,7 +677,7 @@
   "deleteNotification": "Удалить уведомление",
   "noNotifications": "Нет уведомлений",
   "batchDownloadTitle": "Пакетная загрузка",
-  "batchDownloadHint": "Вставьте несколько кодов LPA (по одному в строке, не более 20)",
+  "batchDownloadHint": "Вставьте несколько кодов LPA (по одному в строке)",
   "foundLpaCodes": "Найдено кодов LPA: {count}",
   "@foundLpaCodes": {
     "placeholders": {

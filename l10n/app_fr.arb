@@ -677,7 +677,7 @@
   "deleteNotification": "Supprimer la notification",
   "noNotifications": "Aucune notification",
   "batchDownloadTitle": "Téléchargement par lot",
-  "batchDownloadHint": "Collez plusieurs codes LPA ici (un par ligne, 20 maximum)",
+  "batchDownloadHint": "Collez plusieurs codes LPA ici (un par ligne)",
   "foundLpaCodes": "{count} codes LPA trouvés",
   "@foundLpaCodes": {
     "placeholders": {
